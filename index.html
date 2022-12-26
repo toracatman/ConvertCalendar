@@ -307,7 +307,7 @@
 		}
 
 		function g2h() {
-			arr = getYMD(document.form1.gregorian.value, 0);
+			var arr = getYMD(document.form1.gregorian.value, 0);
 			if (arr == false) return;
 			gy = arr[0];
 			gm = arr[1];
@@ -369,7 +369,7 @@
 		}
 
 		function h2g() {
-			arr = getYMD(document.form1.hhpc.value, 1);
+			var arr = getYMD(document.form1.hhpc.value, 1);
 			if (arr == false) return;
 			hy = arr[0];
 			hm = arr[1];
