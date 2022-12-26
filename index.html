@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 	<meta charset="UTF-8">
-	<title>グレゴリオ暦とHHPCの変換</title>
+	<title>グレゴリオ暦とHHPC（従来）の変換</title>
 	<style>
 		.red {
 			color: red;
@@ -15,8 +15,8 @@
 <body>
 	<form name="form1">
 		<p>
-			うるう年、HHPCのうるう年をチェックします。<br>
-			Checks leap year, HHPC leap year.
+			閏年、HHPC（従来）の閏年をチェックします。<br>
+			Checks leap year, HHPC (Legacy) leap year.
 		</p>
 		<p>
 			<input type="text" name="leapyear" onchange="checkLeap()">
@@ -26,9 +26,9 @@
 			</div>
 		</p>
 		<p>
-			グレゴリオ暦、HHPCを相互変換します。<br>
+			グレゴリオ暦、HHPC（従来）を相互変換します。<br>
 			「YYYY/MM/DD」か「YYYY-MM-DD」、8桁、「Y年M月D日」、「Y年月名D日」、「Month D, Y」の形式で入力してください。<br>
-			Converts Gregorian, HHPC.<br>
+			Converts Gregorian, HHPC (Legacy) .<br>
 			Input &quot;YYYY/MM/DD&quot;, &quot;YYYY-MM-DD&quot;, 8 digits, &quot;Y年M月D日&quot;, &quot;Y年月名D日&quot; or &quot;Month D, Y&quot;.
 		</p>
 		<p>
@@ -69,8 +69,8 @@
 		var nhdb = [0, 30, 60, 91, 121, 151, 182, 212, 242, 273, 303, 333, 364];
 		var mon_name = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Irv"];
 		var mon_name_en = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "Irvember"];
-		var mon_name_ja = ["睦月", "如月", "弥生", "卯月", "皐月", "水無月", "文月", "葉月", "長月", "神無月", "霜月", "師走", "余月"];
-		var mon_name_ja_new = ["雅月", "菲月", "瑪月", "艾月", "邁月", "淳月", "茱月", "奥月", "摂月", "憶月", "衲月", "迪月", "？月"];
+		var mon_name_ja = ["睦月", "如月", "弥生", "卯月", "皐月", "水無月", "文月", "葉月", "長月", "神無月", "霜月", "師走", "？月"];
+		var mon_name_ja_new = ["雅月", "菲月", "瑪月", "艾月", "邁月", "淳月", "茱月", "奥月", "摂月", "憶月", "衲月", "迪月", "繧月"];
 		var day_name = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 		var day_name_en = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 		var day_name_ja = ["日", "月", "火", "水", "木", "金", "土"];
@@ -92,16 +92,16 @@
 			}
 			e_leap.classList.remove("red");
 			if (isLeap(document.form1.leapyear.value)) {
-				e_leap.innerHTML = "<span class='red'>" + document.form1.leapyear.value + "年はうるう年です。</span>";
+				e_leap.innerHTML = "<span class='red'>" + document.form1.leapyear.value + "年は閏年です。</span>";
 			}
 			else {
-				e_leap.innerHTML = document.form1.leapyear.value + "年はうるう年ではありません。";
+				e_leap.innerHTML = document.form1.leapyear.value + "年は閏年ではありません。";
 			}
 			if (isLeapH(document.form1.leapyear.value)) {
-				e_leap.innerHTML += "<span class='red'>" + document.form1.leapyear.value + "年はHHPCのうるう年です。</span>";
+				e_leap.innerHTML += "<span class='red'>" + document.form1.leapyear.value + "年はHHPCの閏年です。</span>";
 			}
 			else {
-				e_leap.innerHTML += document.form1.leapyear.value + "年はHHPCのうるう年ではありません。";
+				e_leap.innerHTML += document.form1.leapyear.value + "年はHHPCの閏年ではありません。";
 			}
 			e_leap.innerHTML += "<br>";
 			if (isLeap(document.form1.leapyear.value)) {
@@ -232,7 +232,7 @@
 				if (m == 2) {
 					if (isLeap(y)) {
 						if (d > 29) {
-							e_error.innerHTML = "うるう年の2月の日は29以下を入力してください。<br>" +
+							e_error.innerHTML = "閏年の2月の日は29以下を入力してください。<br>" +
 								"Input 29 or under in date in February in a leap year.";
 							return false;
 						}
@@ -268,7 +268,7 @@
 				}
 				if (isLeapH(y)) {
 					if (m > 13) {
-						e_error.innerHTML = "HHPCのうるう年の月は13以下を入力してください。<br>" +
+						e_error.innerHTML = "HHPCの閏年の月は13以下を入力してください。<br>" +
 							"Input 13 or under in month in a HHPC leap year.";
 						return false;
 					}
@@ -297,7 +297,7 @@
 				else {
 					if (d > 30) {
 						e_error.innerHTML = "1月、2月、4月、5月、7月、8月、10月、11月の日は30までを入力してください。<br>" +
-							"Input 31 or under in date in January, February, April, May, July, August, October or November.";
+							"Input 30 or under in date in January, February, April, May, July, August, October or November.";
 						return false;
 					}
 				}
